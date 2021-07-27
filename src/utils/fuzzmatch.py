@@ -3,6 +3,20 @@ from os.path import dirname, basename
 
 
 def fuzzmatch_filenames(input_list, to_be_mapped):
+    '''
+    Returns a permuted list of to_be_mapped that fuzzy match input_list
+
+    Args:
+        input_list (list of str): A list of strings, for instance file names
+        to_be_mapped (list of str): Another list of string that will be
+        reordered
+
+    Returns:
+        mapped_list (list of str): A permuted version of to_be_mapped of the
+        same length of input_list, each of which is most similar to the
+        matching element in the input_list judged by the Levenshtein distance.
+    '''
+
     res_str = []
     for istr in input_list:
         lev_sim = [fuzz.ratio(istr, st) for st in to_be_mapped]

@@ -1,4 +1,4 @@
-# davidpy: my python snippets
+# acciopy: my python snippets
 
 See [tutorial of packaging
 projects](https://packaging.python.org/tutorials/packaging-projects/).
@@ -21,7 +21,7 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps
 davidpy-Accio
 ```
 
-## fuzzmatch_filenames
+## fuzzmatch
 
 A simple module to fuzzy-match two lists of file names.
 
