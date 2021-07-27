@@ -1,10 +1,11 @@
-import fuzzywuzzy
-import os.path
+from fuzzywuzzy import fuzz
+from os.path import dirname, basename
+
 
 def fuzzmatch_filenames(input_list, to_be_mapped):
     res_str = []
     for istr in input_list:
-        lev_sim = [fuzzywuzzy.fuzz.ratio(istr, st) for st in to_be_mapped]
+        lev_sim = [fuzz.ratio(istr, st) for st in to_be_mapped]
         ind_max = lev_sim.index(max(lev_sim))
         res_str.append(to_be_mapped[ind_max])
     return res_str
@@ -15,11 +16,11 @@ def _unique_first(alist):
 
 
 def _unique_dirname(alist):
-    return _unique_first([os.path.dirname(x) for x in alist])
+    return _unique_first([dirname(x) for x in alist])
 
 
 def basenames(alist):
-    return [os.path.basename(s) for s in alist]
+    return [basename(s) for s in alist]
 
 
 def print_fuzzmatch_filenames(input_list, mapped_list):
@@ -33,3 +34,24 @@ def print_fuzzmatch_filenames(input_list, mapped_list):
     print("# File mapping:")
     print(imdict)
     return None
+
+
+def _sim_filename(ind):
+    res = str(ind) + '_S' + str(ind) + '.fq'
+    return(res)
+
+
+def _sim_complex_filename(ind):
+    res = '/tmp/' + str(ind) + '_S' + str(ind) + '_L001.fastq.gz'
+    return(res)
+
+
+if __name__ == '__main__':
+    print("An example of fuzzmatch_filenames")
+    alist = [_sim_filename(i) for i in range(1, 5)]
+    blist = [_sim_complex_filename(i) for i in reversed(range(1, 5))]
+    print('The input list:' + ','.join(alist))
+    print('The observed list:' + ','.join(blist))
+    matched_list = fuzzmatch_filenames(alist, blist)
+    print('The matched list:')
+    print_fuzzmatch_filenames(alist, matched_list)
