@@ -21,7 +21,8 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps
 davidpy-Accio
 ```
 
-## fuzzmatch
+## `acciopy`
 
-A simple module to fuzzy-match two lists of file names.
+Now the package `acciopy` contains contains a module named `fuzzmatch`. The
+purpose of `fuzzmatch` is to fuzzy-match two lists of file names.
 
